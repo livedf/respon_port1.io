@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>bentley</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="font.css">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="main_style.css">
+    <style>
+        
+    </style>
+    <script src="respond.min.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $(".gnblst").hover(function(){
+           $(this).find("nav").stop().slideDown(200);
+        });
+        $(".gnblst").mouseleave(function(){
+           $(this).find("nav").stop().slideUp(150); 
+        });
+        $(".slidebox li").mousemove(function(e){
+            var MoveX = e.pageX;
+            var MoveY = e.pageY;
+            var wid = $(this).width();
+            var hgt = $(this).height();
+            var a_w1 = parseInt(wid / 3);
+            var a_w2 = parseInt( (wid / 3 ) *2);
+            var a_h = parseInt((hgt / 2)+100);
+            var spd = 200;
+            if (MoveX < a_w1 & MoveY < a_h) {
+                $(this).find("img").stop().animate({"top":"0", "left":"0"}, spd);
+            } else if (MoveX < a_w1 & MoveY > a_h) {
+                $(this).find("img").stop().animate({"top":"-40%", "left":"0"}, spd);
+            } else if (MoveX < a_w2 & MoveY < a_h) {
+                $(this).find("img").stop().animate({"top":"0", "left":"-20%"}, spd);
+            } else if (MoveX < a_w2 & MoveY > a_h) {
+                $(this).find("img").stop().animate({"top":"-40%","left":"-20%"}, spd);
+            } else if (MoveX > a_w2 & MoveY < a_h) {
+                $(this).find("img").stop().animate({"top":"0", "left":"-40%"}, spd);
+            } else if (MoveX > a_w2 & MoveY > a_h) {
+                $(this).find("img").stop().animate({"top":"-40%", "left":"-40%"}, spd);
+            }
+        });
+        function m_nav_open (){
+            var snb = null;
+            
+            $(".nav_btn").click(function (){
+                $(".m_menu").animate({"right":"0"},200);
+                $("body").addClass("ovh");
+            });
+            $(".m_gnb_lst").click(function(){
+                var m_menu = $(this).find(".m_snb");
+                if (snb == null){
+                   
+                    if (m_menu.is(":visible")) {
+                        $(m_menu).slideUp(100);
+                    } else {
+                        $(m_menu).slideDown(200, function(){
+                            snb = $(this);
+                        });
+                    }   
+                } else {
+                    if (m_menu.is(":visible")) {
+                        $(m_menu).slideUp(100);
+                    } else {
+                        $(snb).slideUp(100);
+                        $(m_menu).delay(200).slideDown(200, function(){
+                            snb = $(this);
+                        });
+                    }   
+                }
+
+            });
+            $(".back").click(function(){
+                if (snb != null) {
+                    $(snb).slideUp(100, function (){
+                        $(".m_menu").animate({"right":"-100%"},100);
+                    });
+                    $("body").removeClass("ovh");
+                } else {
+                    $(".m_menu").animate({"right":"-100%"},100);
+                    $("body").removeClass("ovh");
+                }
+            });
+        };
+        m_nav_open();
+    });
+    </script>
+</head>
+<body>
+    <div class="hdwrap">
+        <header id="hd">
+            <nav class="tnb">
+                <ul>
+                    <li>
+                        <a href="">
+                            <i class="fas fa-envelope">
+                                
+                            </i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fas fa-map-marker-alt">
+                                
+                            </i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            <i class="fas fa-wrench">
+                                
+                            </i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="gnb">
+                <ul>
+                    <li class="gnblst">
+                        <div class="logo">
+                            <a href="">
+                                <img src="./img/logo.png" alt="로고 이미지">
+                            </a>
+                        </div>
+                    </li>
+                    <li class="gnblst">
+                        <span class="eft"></span>
+                        <h2 class="headertitle">모델</h2>
+                        <nav class="lnb">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        MULSANNE SPEED
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        MULANNE
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        BENTLEY FLYING SPUR
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        BENTAYGA
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+                    <li class="gnblst">
+                        <span class="eft"></span>
+                        <h2 class="headertitle">서비스</h2>
+                        <nav class="lnb">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        부품
+                                    </a></li>
+                                <li>
+                                    <a href="">
+                                        서비스 & 정비
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        애프터세일즈 서비스
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+                    <li class="gnblst">
+                        <span class="eft"></span>
+                        <h2 class="headertitle">액세서리</h2>
+                        <nav class="lnb">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        새로운 액세서리
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        특별 액세서리
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        내장 액세서리  
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        외장 액세서리
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        알로이 휠 
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+                    <li class="gnblst">
+                        <span class="eft"></span>
+                        <h2 class="headertitle">회사소개</h2>
+                        <nav class="lnb">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        벤틀리 서울
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        당사의 팀
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        당사를 찾는 방법  
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        영업시간
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        기타위치
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        최근소식
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        이벤트   
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </li>
+                </ul>
+            </nav>
+        
+        </header>
+    <div class="nav_btn">
+        <div class="btn_wrap">
+            <span class="line1">
+
+            </span>
+            <span class="line2">
+
+            </span>
+            <span class="line3">
+
+            </span>
+        </div>
+    </div>    
+    </div>
+    <div class="con">
+        <div class="slidebox">
+            <ul>
+                <li>
+                    <img src="./img/slide_bnr1.jpg" alt="">
+                </li>
+                <li>
+                    <img src="./img/slide_bnr2.jpg" alt="">
+                </li>
+                <li>
+                    <img src="./img/slide_bnr3.jpg" alt="">
+                </li>
+            </ul>
+        </div>
+        <div class="conwrap">
+            <h2 class="contitle col-12">
+                BENTLEY 홈페이지를 방문해 주셔서 감사합니다.
+            </h2>
+            <P class="concomment col-12">
+                Bentley Motors 공식 딜러샵으로, Bentley 본사로부터 엄격한 품질 기준을 인증 받은 다양한 전문 서비스를 제공하여 귀하의 Bentley 차량이 동력 성능과 기능을 최적으로 유지할 수 있도록 지원해 드립니다.
+            </P>
+            <div class="col-3 cartitle">
+                <div class="car_box">
+                    <a href="">
+                        <img src="./img/ct1.jpg" alt="차량정보 이미지입니다.">
+                        <h4 class="title">
+                           MULSANNE 
+                        </h4>
+                        <p class="comment">
+                            럭셔리와 탁월한 성능의 결정체인 새로운 Mulsanne은 Bentley 디자인, 장인정신, 그리고 엔지니어링 역량의 정수를 상징한다. 
+                        </p>
+                        <span>
+                            more
+                            <p class="wave">
+                                <img src="./img/wave.png" alt="">
+                            </p>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-3 cartitle">
+                <div class="car_box">
+                    <a href="">
+                        <img src="./img/ct2.jpg" alt="차량정보 이미지입니다.">
+                        <h4 class="title">
+                            FLYING SPUR 
+                        </h4>
+                        <p class="comment">
+                            Flying Spur V8에는 Flying Spur의 모든 시그니처가 충실히 구현되어 있습니다. 혁신적인 설계, 정교한 엔지니어링, 놀라울 정도의 압도적인 힘. 이 모든 것을 갖춘 Flying Spur
+                        </p>
+                        <span>
+                            more
+                            <p class="wave">
+                                <img src="./img/wave.png" alt="">
+                            </p>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-3 cartitle">
+                <div class="car_box">
+                    <a href="">
+                        <img src="./img/ct3.jpg" alt="차량정보 이미지입니다.">
+                        <h4 class="title">
+                            BENTAYGA
+                        </h4>
+                        <p class="comment">
+                            Bentayga는 재평가와 재발견 그리고 재창조라는 과정을 통해 SUV의 모든 것을 완전히 새롭게 재해석하여 선보입니다.
+                        </p>
+                        <span>
+                            more
+                            <p class="wave">
+                                <img src="./img/wave.png" alt="">
+                            </p>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-3 cartitle">
+                <div class="car_box">
+                    <a href="">
+                        <img src="./img/ct4.jpg" alt="차량정보 이미지입니다.">
+                        <h4 class="title">
+                            MUSANNE SPEED
+                        </h4>
+                        <p class="comment">
+                            드라이버를 위한 MULSANNE 새로운 Mulsanne Speed는 직접 운전하는 것을 즐기고 Mulsanne의 넉넉한 파워를 느끼고자 하는 드라이버를 위해 설계되었다.
+                        </p>
+                        <span>
+                            more
+                            <p class="wave">
+                                <img src="./img/wave.png" alt="">
+                            </p>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="conwrap" id="page2">
+            <div class="select col-12">
+                <form action="search.php">
+                    <input type="text" class="col-4" placeholder="궁금한 점을 입력하세요 ">
+                    <button class="col-2">질문보내기 </button>
+                </form>
+            </div>
+        </div>
+        <footer id="ft" class="conwrap">
+            <nav class="fnb">
+                <ul>
+                    <li>
+                        <a href="">
+                            개인정보 처리방침
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            개인정보 수집방침
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            이용 약관
+                        </a>
+                    </li>
+                    <li>
+                        <a href="">
+                            정보처리의 고시
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <p class="copy">@copyright by kimyahyeo</p>
+            <p class="info">사업자 등록 : 222-22-221112 | 주소 : 대전광역시 서구 괴정동 미르스빌 304호 | 전화번호 | 02-202-2222 | fax : 02-222-2222</p>
+        </footer>
+    </div>
+    
+    <div class="m_menu ovh">
+        <div class="logobox">
+            <img src="./img/logo.png" alt="">
+        </div>
+        <div class="back">
+            <div class="inner">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+        </div>
+        <nav class="m_gnb">
+            <ul>
+                <li class="m_gnb_lst">
+                    <span>
+                        모델
+                    </span>
+                    <nav class="m_snb">
+                        <ul class="m_snb_box">
+                            <li>
+                               <a href="">
+                                    mulsanne speed
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    mulasnne
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    fly spur
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                 bentayga
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </li>
+                <li class="m_gnb_lst">
+                    <span>
+                        서비스
+                    </span>
+                    <nav class="m_snb">
+                        <ul class="m_snb_box">
+                            <li>
+                               <a href="">
+                                    부품
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    서비스 & 정비
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    에프터 세일즈 서비스
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </li>
+                <li class="m_gnb_lst">
+                    <span>
+                        액세서리
+                    </span>
+                    <nav class="m_snb">
+                        <ul class="m_snb_box">
+                            <li>
+                               <a href="">
+                                    새로운 액세서리
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    특별 액세서리
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    내장 액세서리
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    외장 액세서리
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    알로이 휠
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </li>
+                <li class="m_gnb_lst">
+                    <span>
+                        회사소개
+                    </span>
+                    <nav class="m_snb">
+                        <ul class="m_snb_box">
+                            <li>
+                               <a href="">
+                                    벤틀리 서울
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    당사의 팀
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    당사를 찾는 방법
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    영업시간
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    기타위치
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    최근소식
+                                </a>
+                            </li>
+                            <li>
+                               <a href="">
+                                    이벤트
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </li>
+                <li class="m_gnb_lst m_gnb_slt2">
+                    <a href="">
+                        <i class="fas fa-phone">
+
+                       </i>
+                    </a>
+                    <a href="">
+                        <i class="far fa-envelope-open"></i>
+                    </a>
+                    <a href="">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    
+                </li>
+            </ul>
+            
+        </nav>
+    </div>
+</body>
+</html>
